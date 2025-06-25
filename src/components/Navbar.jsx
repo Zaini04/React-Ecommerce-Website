@@ -35,7 +35,7 @@ const Navbar = () => {
     const [isLogin,setIsLogin] = useState(true)
 
   return (
-    <nav className='bg-white shadow-md'>
+    <nav className='bg-white shadow-md sticky top-0 z-10'>
         <div className='container mx-auto px-4 py-4 md:px-16 lg:px-24 flex justify-between items-center '>
             <div className='font-bold text-lg'>
                 <Link to="/" >E-shop</Link>
