@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { FaCarSide, FaQuestion } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addToCart } from "../redux/CartSlice";
+import { toast } from "react-toastify";
 
 function ProductDetail() {
   const { id } = useParams();
   const products = useSelector((state) => state.product.products);
   const [product, setProduct] = useState();
+  const dispatch =  useDispatch()
+
+  const handleAddToCart = ()=>{
+    dispatch(addToCart(product))
+    toast.success("Sucessfully Added")
+  }
 
   useEffect(() => {
     const newItem = products.find((product) => product.id == id);
@@ -33,9 +41,11 @@ function ProductDetail() {
               type="number"
               min="1"
               id="quantity"
+              defaultValue='1'
               className="border p-1 w-16 "
             />
-            <button className="bg-red-600 text-white py-1.5 px-4 hover:bg-red-800">
+            <button className="bg-red-600 text-white py-1.5 px-4 hover:bg-red-800" 
+            onClick={handleAddToCart}>
               Add to Cart
             </button>
           </div>
